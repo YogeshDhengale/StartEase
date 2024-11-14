@@ -5,7 +5,7 @@ import * as React from "react";
 export function BrandHeader() {
   return (
         <div className="flex gap-4 overflow-hidden">
-          <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
+          <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-violet-950 text-sidebar-primary-foreground">
             <svg
               className="size-4"
               viewBox="0 0 32 32"

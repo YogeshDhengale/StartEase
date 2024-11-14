@@ -14,7 +14,7 @@ function RootLayout({ children }: { children: ReactNode }) {
       <Navbar />
       <div className="flex size-full">
         <AppSidebar />
-        <section className="flex min-h-screen flex-1 flex-col px-6 pd-6 pt-16 pb-10 max-md:pd-14sm:px-14">
+        <section className="flex min-h-screen flex-1 flex-col px-6 pd-6 pt-[5.5rem] md:py-20 pb-10 max-md:pd-14 sm:px-10">
           <div className="w-full">{children}</div>
         </section>
       </div>

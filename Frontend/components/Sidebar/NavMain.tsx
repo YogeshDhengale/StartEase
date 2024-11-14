@@ -31,12 +31,10 @@ export function NavMain() {
             pathname === item.url || pathname.startsWith(`${item.url}/`);
             return (
                 !item.items?.length ? <SidebarMenuItem key={item.title}>
-            <SidebarMenuButton asChild>
-              <Link href={item.url} className={cn({"bg-blue-1": isActive})}>
-                {item.icon && <item.icon color={isActive ? "#1640d6" : undefined}/>}
-                <span className={cn("text-sm font-bold", {
-                    "text-blue-2": isActive
-                })}>{item.title}</span>
+            <SidebarMenuButton asChild isActive={isActive}>
+              <Link href={item.url} >
+                {item.icon && <item.icon />}
+                <span className={cn("text-sm font-bold")}>{item.title}</span>
               </Link>
             </SidebarMenuButton>
             </SidebarMenuItem> :
@@ -48,10 +46,8 @@ export function NavMain() {
             <SidebarMenuItem>
               <CollapsibleTrigger asChild>
                 <SidebarMenuButton tooltip={item.title}>
-                  {item.icon && <item.icon color={isActive ? "#1640d6" : undefined} />}
-                  <span className={cn("text-sm font-bold", {
-                    "text-blue-2": isActive
-                })}>{item.title}</span>
+                  {item.icon && <item.icon />}
+                  <span className={cn("text-sm font-bold")}>{item.title}</span>
                   <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
                 </SidebarMenuButton>
               </CollapsibleTrigger>

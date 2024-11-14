@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { NavMain } from "./nav-main";
+import { NavMain } from "./NavMain";
 import { NavUser } from "./NavUser";
 import { BrandHeader } from "../BrandHeader/BrandHeader";
 import {

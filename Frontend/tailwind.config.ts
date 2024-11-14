@@ -14,6 +14,11 @@ const config: Config = {
   				'1': '#e6efff',
 				'2': "#1640d6"
   			},
+			purple: {
+				"1": "#531dab",
+				'2': '#d3adf7',
+				'3': '#f9f0ff',
+			},
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {
