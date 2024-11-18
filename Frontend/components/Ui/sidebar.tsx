@@ -49,7 +49,7 @@ function useSidebar() {
 
 const SidebarProvider = React.forwardRef<
   HTMLDivElement,
-  React.ComponentProps<"div"> & {
+  React.ComponentProps<"main"> & {
     defaultOpen?: boolean;
     open?: boolean;
     onOpenChange?: (open: boolean) => void;
@@ -132,7 +132,7 @@ const SidebarProvider = React.forwardRef<
     return (
       <SidebarContext.Provider value={contextValue}>
         <TooltipProvider delayDuration={0}>
-          <div
+          <main
             style={
               {
                 "--sidebar-width": SIDEBAR_WIDTH,
@@ -148,7 +148,7 @@ const SidebarProvider = React.forwardRef<
             {...props}
           >
             {children}
-          </div>
+          </main>
         </TooltipProvider>
       </SidebarContext.Provider>
     );
@@ -215,7 +215,7 @@ const Sidebar = React.forwardRef<
     return (
       <aside
         ref={ref}
-        className="group peer hidden md:block text-sidebar-foreground relative z-60"
+        className="group peer hidden md:block text-sidebar-foreground relative"
         data-state={state}
         data-collapsible={state === "collapsed" ? collapsible : ""}
         data-variant={variant}
@@ -316,10 +316,10 @@ SidebarRail.displayName = "SidebarRail";
 
 const SidebarInset = React.forwardRef<
   HTMLDivElement,
-  React.ComponentProps<"main">
+  React.ComponentProps<"section">
 >(({ className, ...props }, ref) => {
   return (
-    <main
+    <section
       ref={ref}
       className={cn(
         "relative flex min-h-svh flex-1 flex-col bg-background",

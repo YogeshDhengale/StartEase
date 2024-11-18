@@ -3,11 +3,11 @@ import { Progress } from "../Ui/progress";
 
 function ProgressShower() {
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-4">
       <h6 className="font-bold leading-none tracking-tight">
         Invoices
       </h6>
-      <div className="flex flex-col h-full gap-4">
+      <div className="flex flex-col h-full gap-2">
         {[
           { title: "Draft", value: 0 },
           { title: "Pending", value: 60 },

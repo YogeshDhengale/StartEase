@@ -1,6 +1,6 @@
 import Navbar from "@/components/Navbar/Navbar";
 import AppSidebar from "@/components/Sidebar/AppSidebar";
-import { SidebarProvider } from "@/components/Ui/sidebar";
+import { SidebarInset, SidebarProvider } from "@/components/Ui/sidebar";
 import React, { ReactNode } from "react";
 
 export async function generateStaticParams() {
@@ -9,17 +9,13 @@ export async function generateStaticParams() {
 
 function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <main className="relative">
-      <SidebarProvider className="size-full">
+    <SidebarProvider>
       <Navbar />
-      <div className="flex size-full">
-        <AppSidebar />
-        <section className="flex min-h-screen flex-1 flex-col px-6 pd-6 pt-[5.5rem] md:py-20 pb-10 max-md:pd-14 sm:px-10">
-          <div className="w-full">{children}</div>
-        </section>
-      </div>
-      </SidebarProvider>
-    </main>
+      <AppSidebar />
+      <SidebarInset className="w-[calc(100%-16rem)] px-6 pd-6 pt-[5.5rem] md:pt-20 md:pb-12 pb-10 max-md:pd-14 sm:px-10">
+        {children}
+      </SidebarInset>
+    </SidebarProvider>
   );
 }
 

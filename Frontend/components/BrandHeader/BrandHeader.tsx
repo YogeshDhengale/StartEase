@@ -13,15 +13,15 @@ export function BrandHeader() {
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               stroke="#ffffff"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
             >
-              <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+              <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
               <g
                 id="SVGRepo_tracerCarrier"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               ></g>
               <g id="SVGRepo_iconCarrier">
                 {" "}
@@ -29,7 +29,7 @@ export function BrandHeader() {
               </g>
             </svg>
           </div>
-          <div className="flex-1 flex items-center text-lg font-semibold text-left text-sm leading-tight">
+          <div className="flex-1 flex items-center font-semibold text-left text-md leading-tight">
             StartEaseIn
           </div>
         </div>

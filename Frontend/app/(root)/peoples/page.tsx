@@ -1,15 +1,15 @@
 import React from "react";
 import Heading from "@/components/Heading/Heading";
-import CustomersTableContainer from "./CustomersTableContainer";
+import PeoplesTableContainer from "./PeoplesTableContainer";
 
 function page() {
   return (
     <>
-      <Heading>Customers</Heading>
+      <Heading>Peoples</Heading>
       <p className="text-sm text-muted-foreground">
-        Browse through client list
+        Browse through peoples list
       </p>
-      <CustomersTableContainer />
+      <PeoplesTableContainer />
     </>
   );
 }

@@ -15,6 +15,22 @@ const badgeVariants = cva(
         destructive:
           "border-transparent bg-destructive text-destructive-foreground shadow hover:bg-destructive/80",
         outline: "text-foreground",
+        people: "bg-pink-100 text-pink-500 border-pink-500",
+        new: "border-blue-2 text-blue-2 bg-blue-1",
+        negotiation: "border-purple-1 text-purple-1 bg-purple-3",
+        success: "border-teal-600 text-teal-900 bg-teal-100",
+        danger: "border-rose-600 text-rose-900 bg-rose-100",
+        assigned: "bg-cyan-400 text-white border-cyan-950",
+        hold: "bg-amber-600 text-white",
+        waiting: "text-amber-600 border-amber-600 bg-amber-100",
+        linkedin: "bg-blue-2 text-white",
+        socialmedia: "bg-indigo-900 text-white",
+        website: "bg-orange-500 text-white",
+        advertising: "bg-green-800 text-white",
+        friend: "bg-rose-900 text-white",
+        networks:  "bg-pink-400 text-white",
+        referral: "bg-fuchsia-600 text-white",
+        sales: "bg-purple-600 text-white"
       },
     },
     defaultVariants: {
