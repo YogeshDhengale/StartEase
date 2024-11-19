@@ -23,6 +23,7 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
+import { cn } from "@/lib/utils";
 
 type DataTableProps<T> = {
   addBtnTitle: string;
@@ -53,7 +54,7 @@ function DataTable<T>({ addBtnTitle, data, columns }: DataTableProps<T>) {
     },
     initialState: {
       pagination: {
-        pageSize: 15,
+        pageSize: 10,
       },
     },
   });
@@ -82,7 +83,12 @@ function DataTable<T>({ addBtnTitle, data, columns }: DataTableProps<T>) {
                 <TableRow key={headerGroup.id}>
                   {headerGroup.headers.map((header) => {
                     return (
-                      <TableHead key={header.id} className="min-w-max break-keep text-nowrap">
+                      <TableHead
+                        key={header.id}
+                        className={cn("min-w-max break-keep text-nowrap", {
+                          "sticky right-0": header.id === "actions",
+                        })}
+                      >
                         {header.isPlaceholder
                           ? null
                           : flexRender(
@@ -101,9 +107,15 @@ function DataTable<T>({ addBtnTitle, data, columns }: DataTableProps<T>) {
                   <TableRow
                     key={row.id}
                     data-state={row.getIsSelected() && "selected"}
+                    className="bg-card"
                   >
                     {row.getVisibleCells().map((cell) => (
-                      <TableCell key={cell.id} className="min-w-max break-keep text-nowrap">
+                      <TableCell
+                        key={cell.id}
+                        className={cn("min-w-max break-keep text-nowrap", {
+                          "sticky right-0 bg-inherit": cell.id.includes("actions"),
+                        })}
+                      >
                         {flexRender(
                           cell.column.columnDef.cell,
                           cell.getContext()
@@ -131,7 +143,9 @@ function DataTable<T>({ addBtnTitle, data, columns }: DataTableProps<T>) {
             size="sm"
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}
-          ><ChevronLeft /></Button>
+          >
+            <ChevronLeft />
+          </Button>
           <div className="text-sm text-muted-foreground">
             Page {table.getState().pagination.pageIndex + 1} of{" "}
             {table.getPageCount()}
