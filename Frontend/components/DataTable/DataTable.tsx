@@ -26,7 +26,7 @@ import {
 import { cn } from "@/lib/utils";
 
 type DataTableProps<T> = {
-  addBtnTitle: string;
+  addBtnTitle?: string;
   data: T[];
   columns: ColumnDef<T>[];
 };
@@ -72,9 +72,11 @@ function DataTable<T>({ addBtnTitle, data, columns }: DataTableProps<T>) {
           <Button variant="outline">
             <RotateCcw /> Refresh
           </Button>
-          <Button className="bg-violet-700 hover:bg-violet-900 text-white">
-            <Plus /> {addBtnTitle}
-          </Button>
+          {addBtnTitle && (
+            <Button className="bg-violet-700 hover:bg-violet-900 text-white">
+              <Plus /> {addBtnTitle}
+            </Button>
+          )}
         </div>
         <div className="rounded-md border">
           <Table>
@@ -113,7 +115,8 @@ function DataTable<T>({ addBtnTitle, data, columns }: DataTableProps<T>) {
                       <TableCell
                         key={cell.id}
                         className={cn("min-w-max break-keep text-nowrap", {
-                          "sticky right-0 bg-inherit": cell.id.includes("actions"),
+                          "sticky right-0 bg-inherit":
+                            cell.id.includes("actions"),
                         })}
                       >
                         {flexRender(

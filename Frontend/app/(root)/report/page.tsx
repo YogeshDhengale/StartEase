@@ -1,36 +1,16 @@
-import Heading from '@/components/Heading/Heading'
-import { Badge } from '@/components/Ui/badge'
-import React from 'react'
+import Heading from "@/components/Heading/Heading";
+import React from "react";
 
 function page() {
   return (
     <>
-    <Heading>Invoices</Heading>
-    <p className="text-sm text-muted-foreground">
-      Browse through invoices list
-    </p>
-    <Badge>Badge</Badge>
-    <Badge variant="assigned">Assigned</Badge>
-    <Badge variant="danger">Danger</Badge>
-    <Badge variant="destructive">Destructive</Badge>
-    <Badge variant="hold">Hold</Badge>
-    <Badge variant="negotiation">Negotiation</Badge>
-    <Badge variant="new">New</Badge>
-    <Badge variant="outline">Outline</Badge>
-    <Badge variant="people">People</Badge>
-    <Badge variant="secondary">Secondary</Badge>
-    <Badge variant="success">Success</Badge>
-    <Badge variant="waiting">Waiting</Badge>
-    <Badge variant="linkedin">LinkedIn</Badge>
-    <Badge variant="socialmedia">Social Media</Badge>
-    <Badge variant="website">Website</Badge>
-    <Badge variant="advertising">Advertising</Badge>
-    <Badge variant="friend">Friend</Badge>
-    <Badge variant="networks">Networks</Badge>
-    <Badge variant="referral">Referral</Badge>
-    <Badge variant="sales">Sales</Badge>
-  </>
-  )
+      <Heading>Reports</Heading>
+      <p className="text-sm text-muted-foreground">
+        Browse through customized report
+      </p>
+      <div className="w-full grid md:grid-cols-4 md:grid-rows-9 lg:grid-rows-6 gap-4 mt-8"></div>
+    </>
+  );
 }
 
-export default page
+export default page;

@@ -1,162 +1,101 @@
 "use client";
 
 import React from "react";
-import { Badge } from "@/components/Ui/badge";
 import { ColumnDef } from "@tanstack/react-table";
 import DataTable from "@/components/DataTable/DataTable";
 import ActionDropdown from "@/components/ActionDropdown/ActionDropdown";
+import { DollarSign } from "lucide-react";
 
-interface Client {
-  type: string;
-  name: string;
-  country: string;
-  phone: string;
-  email: string;
+interface Payment {
+  client: string;
+  amount: string;
+  date: string;
+  number: string;
+  year: string;
+  paymentMode: "Credit Card" | "Bank Transfer" | "PayPal" | "Cash" | "UPI";
 }
 
-const data: Client[] = [
+const data: Payment[] = [
   {
-    type: "People",
-    name: "Yo D",
-    country: "India",
-    phone: "8626038497",
-    email: "acd@eamil.com",
+    client: "Tech Ventures",
+    amount: "1500.00",
+    date: "2024-11-15",
+    number: "INV-1001",
+    year: "2024",
+    paymentMode: "Credit Card",
   },
   {
-    type: "People",
-    name: "Abhi Dhengale",
-    country: "India",
-    phone: "8626038497",
-    email: "abc@email.com",
+    client: "Green Solutions",
+    amount: "2200.00",
+    date: "2024-10-20",
+    number: "INV-1002",
+    year: "2024",
+    paymentMode: "Bank Transfer",
   },
   {
-    type: "Company",
-    name: "Tech Solutions",
-    country: "USA",
-    phone: "1234567890",
-    email: "info@techsolutions.com",
+    client: "Design Co.",
+    amount: "1800.00",
+    date: "2024-11-01",
+    number: "INV-1003",
+    year: "2024",
+    paymentMode: "PayPal",
   },
   {
-    type: "People",
-    name: "Emma Watson",
-    country: "UK",
-    phone: "4478901234",
-    email: "emma@example.com",
+    client: "Global Traders",
+    amount: "1700.00",
+    date: "2024-10-25",
+    number: "INV-1004",
+    year: "2024",
+    paymentMode: "Cash",
   },
   {
-    type: "Company",
-    name: "Global Innovations",
-    country: "Germany",
-    phone: "4987654321",
-    email: "contact@globalinno.de",
-  },
-  {
-    type: "People",
-    name: "Raj Patel",
-    country: "India",
-    phone: "9876543210",
-    email: "raj.patel@gmail.com",
-  },
-  {
-    type: "Company",
-    name: "Green Energy Co",
-    country: "Canada",
-    phone: "6135557890",
-    email: "info@greenenergy.ca",
-  },
-  {
-    type: "People",
-    name: "Sophie Chen",
-    country: "China",
-    phone: "13800138000",
-    email: "sophie.chen@qq.com",
-  },
-  {
-    type: "Company",
-    name: "Aussie Exports",
-    country: "Australia",
-    phone: "0261234567",
-    email: "sales@aussieexports.com.au",
-  },
-  {
-    type: "People",
-    name: "Carlos Rodriguez",
-    country: "Spain",
-    phone: "34612345678",
-    email: "carlos@example.es",
-  },
-  {
-    type: "Company",
-    name: "Nordic Design",
-    country: "Sweden",
-    phone: "468765432",
-    email: "info@nordicdesign.se",
-  },
-  {
-    type: "People",
-    name: "Aisha Mohammed",
-    country: "UAE",
-    phone: "971501234567",
-    email: "aisha.m@email.ae",
-  },
-  {
-    type: "Company",
-    name: "Brazilian Motors",
-    country: "Brazil",
-    phone: "5511987654321",
-    email: "contato@brazilianmotors.br",
-  },
-  {
-    type: "People",
-    name: "Yuki Tanaka",
-    country: "Japan",
-    phone: "8109012345678",
-    email: "yuki.tanaka@email.jp",
-  },
-  {
-    type: "Company",
-    name: "African Safaris",
-    country: "Kenya",
-    phone: "254712345678",
-    email: "bookings@africansafaris.ke",
+    client: "Bright Future Inc.",
+    amount: "2500.00",
+    date: "2024-11-10",
+    number: "INV-1005",
+    year: "2024",
+    paymentMode: "UPI",
   },
 ];
 
+
+
 function TableContainer() {
-  const columns: ColumnDef<Client>[] = [
+  const columns: ColumnDef<Payment>[] = [
     {
-      accessorKey: "type",
-      header: "Type",
+      id: "srNo",
+      header: "Sr. No.",
+      cell: ({ row }) => <span>{row.index + 1}</span>,
+    },
+    {
+      accessorKey: "client",
+      header: "Client",
+    },
+    {
+      accessorKey: "amount",
+      header: "Amount",
       cell: ({ row }) => (
-        <Badge
-          variant="secondary"
-          className="bg-pink-100 text-pink-500 hover:bg-pink-100"
-        >
-          {row.getValue("type")}
-        </Badge>
+        <span className="text-sm text-green-500 flex items-center gap-1">
+          <DollarSign className="w-4 h-4" />
+          {row.getValue("amount")}
+        </span>
       ),
     },
     {
-      accessorKey: "name",
-      header: "Name",
+      accessorKey: "date",
+      header: "Date",
     },
     {
-      accessorKey: "country",
-      header: "Country",
-      cell: ({ row }) => (
-        <div className="flex items-center gap-1">
-          <span className="text-muted-foreground">IN</span>
-          {row.getValue("country")}
-        </div>
-      ),
+      accessorKey: "number",
+      header: "Number",
     },
     {
-      accessorKey: "phone",
-      header: "Phone",
+      accessorKey: "year",
+      header: "Year",
     },
     {
-      accessorKey: "email",
-      header: "Email",
+      accessorKey: "paymentMode",
+      header: "Payment Mode",
     },
     {
       id: "actions",
@@ -166,7 +105,7 @@ function TableContainer() {
     },
   ];
   return (
-    <DataTable columns={columns} data={data} addBtnTitle="Add New Client" />
+    <DataTable columns={columns} data={data}  />
   );
 }
 

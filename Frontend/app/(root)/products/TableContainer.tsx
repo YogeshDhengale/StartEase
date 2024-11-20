@@ -1,168 +1,105 @@
 "use client";
 
 import React from "react";
-import { Badge } from "@/components/Ui/badge";
 import { ColumnDef } from "@tanstack/react-table";
 import DataTable from "@/components/DataTable/DataTable";
 import ActionDropdown from "@/components/ActionDropdown/ActionDropdown";
+import { DollarSign } from "lucide-react";
 
-interface Client {
-  type: string;
+interface Product {
   name: string;
-  country: string;
-  phone: string;
-  email: string;
+  category: string;
+  currency: string;
+  price: string;
+  description: string;
+  ref: string;
 }
 
-const data: Client[] = [
+const data: Product[] = [
   {
-    type: "People",
-    name: "Yo D",
-    country: "India",
-    phone: "8626038497",
-    email: "acd@eamil.com",
+    name: "Wireless Keyboard",
+    category: "Electronics",
+    currency: "USD",
+    price: "49.99",
+    description: "A sleek and modern wireless keyboard.",
+    ref: "WK-10234",
   },
   {
-    type: "People",
-    name: "Abhi Dhengale",
-    country: "India",
-    phone: "8626038497",
-    email: "abc@email.com",
+    name: "Office Chair",
+    category: "Furniture",
+    currency: "USD",
+    price: "199.99",
+    description: "Ergonomic chair for comfortable office work.",
+    ref: "OC-56321",
   },
   {
-    type: "Company",
-    name: "Tech Solutions",
-    country: "USA",
-    phone: "1234567890",
-    email: "info@techsolutions.com",
+    name: "Notebook",
+    category: "Stationery",
+    currency: "INR",
+    price: "120.00",
+    description: "A ruled notebook for note-taking and journaling.",
+    ref: "NB-78945",
   },
   {
-    type: "People",
-    name: "Emma Watson",
-    country: "UK",
-    phone: "4478901234",
-    email: "emma@example.com",
+    name: "Coffee Mug",
+    category: "Kitchenware",
+    currency: "GBP",
+    price: "12.50",
+    description: "Ceramic mug with a matte finish.",
+    ref: "CM-32456",
   },
   {
-    type: "Company",
-    name: "Global Innovations",
-    country: "Germany",
-    phone: "4987654321",
-    email: "contact@globalinno.de",
-  },
-  {
-    type: "People",
-    name: "Raj Patel",
-    country: "India",
-    phone: "9876543210",
-    email: "raj.patel@gmail.com",
-  },
-  {
-    type: "Company",
-    name: "Green Energy Co",
-    country: "Canada",
-    phone: "6135557890",
-    email: "info@greenenergy.ca",
-  },
-  {
-    type: "People",
-    name: "Sophie Chen",
-    country: "China",
-    phone: "13800138000",
-    email: "sophie.chen@qq.com",
-  },
-  {
-    type: "Company",
-    name: "Aussie Exports",
-    country: "Australia",
-    phone: "0261234567",
-    email: "sales@aussieexports.com.au",
-  },
-  {
-    type: "People",
-    name: "Carlos Rodriguez",
-    country: "Spain",
-    phone: "34612345678",
-    email: "carlos@example.es",
-  },
-  {
-    type: "Company",
-    name: "Nordic Design",
-    country: "Sweden",
-    phone: "468765432",
-    email: "info@nordicdesign.se",
-  },
-  {
-    type: "People",
-    name: "Aisha Mohammed",
-    country: "UAE",
-    phone: "971501234567",
-    email: "aisha.m@email.ae",
-  },
-  {
-    type: "Company",
-    name: "Brazilian Motors",
-    country: "Brazil",
-    phone: "5511987654321",
-    email: "contato@brazilianmotors.br",
-  },
-  {
-    type: "People",
-    name: "Yuki Tanaka",
-    country: "Japan",
-    phone: "8109012345678",
-    email: "yuki.tanaka@email.jp",
-  },
-  {
-    type: "Company",
-    name: "African Safaris",
-    country: "Kenya",
-    phone: "254712345678",
-    email: "bookings@africansafaris.ke",
+    name: "Bluetooth Speaker",
+    category: "Electronics",
+    currency: "EUR",
+    price: "79.99",
+    description: "Compact and portable speaker with great sound.",
+    ref: "BS-65789",
   },
 ];
 
+
 function TableContainer() {
-  const columns: ColumnDef<Client>[] = [
+  const columns: ColumnDef<Product>[] = [
     {
-      accessorKey: "type",
-      header: "Type",
-      cell: ({ row }) => (
-        <Badge
-          variant="secondary"
-          className="bg-pink-100 text-pink-500 hover:bg-pink-100"
-        >
-          {row.getValue("type")}
-        </Badge>
-      ),
+      id: "Sr. No.",
+      header: "Sr. No.",
+      cell: ({ row }) => <span>{row.index + 1}</span>,
     },
     {
       accessorKey: "name",
       header: "Name",
     },
     {
-      accessorKey: "country",
-      header: "Country",
+      accessorKey: "category",
+      header: "Product Category",
+    },
+    {
+      accessorKey: "currency",
+      header: "Currency",
+    },
+    {
+      accessorKey: "price",
+      header: "Price",
       cell: ({ row }) => (
-        <div className="flex items-center gap-1">
-          <span className="text-muted-foreground">IN</span>
-          {row.getValue("country")}
-        </div>
+        <span className="text-sm flex items-center gap-1">
+          <DollarSign />
+          {row.getValue("price")}
+        </span>
       ),
     },
     {
-      accessorKey: "phone",
-      header: "Phone",
+      accessorKey: "description",
+      header: "Description",
     },
     {
-      accessorKey: "email",
-      header: "Email",
+      accessorKey: "ref",
+      header: "Ref",
     },
     {
       id: "actions",
-      cell: () => (
-        <ActionDropdown />
-      ),
+      header: "Actions",
+      cell: () => <ActionDropdown />,
     },
   ];
   return (

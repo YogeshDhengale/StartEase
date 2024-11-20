@@ -1,170 +1,103 @@
 "use client";
 
 import React from "react";
-import { Badge } from "@/components/Ui/badge";
 import { ColumnDef } from "@tanstack/react-table";
 import DataTable from "@/components/DataTable/DataTable";
 import ActionDropdown from "@/components/ActionDropdown/ActionDropdown";
 
-interface Client {
-  type: string;
+interface ProductCategory {
   name: string;
-  country: string;
-  phone: string;
-  email: string;
+  description: string;
+  color: string;
+  enabled: boolean;
 }
 
-const data: Client[] = [
+const data: ProductCategory[] = [
   {
-    type: "People",
-    name: "Yo D",
-    country: "India",
-    phone: "8626038497",
-    email: "acd@eamil.com",
+    name: "Electronics",
+    description: "Devices and gadgets like phones, laptops, etc.",
+    color: "#4CAF50", // Green
+    enabled: true,
   },
   {
-    type: "People",
-    name: "Abhi Dhengale",
-    country: "India",
-    phone: "8626038497",
-    email: "abc@email.com",
+    name: "Fashion",
+    description: "Clothing, accessories, and footwear.",
+    color: "#FF9800", // Orange
+    enabled: true,
   },
   {
-    type: "Company",
-    name: "Tech Solutions",
-    country: "USA",
-    phone: "1234567890",
-    email: "info@techsolutions.com",
+    name: "Home Appliances",
+    description: "Household electrical appliances.",
+    color: "#2196F3", // Blue
+    enabled: false,
   },
   {
-    type: "People",
-    name: "Emma Watson",
-    country: "UK",
-    phone: "4478901234",
-    email: "emma@example.com",
+    name: "Books",
+    description: "Fiction, non-fiction, and academic books.",
+    color: "#9C27B0", // Purple
+    enabled: true,
   },
   {
-    type: "Company",
-    name: "Global Innovations",
-    country: "Germany",
-    phone: "4987654321",
-    email: "contact@globalinno.de",
-  },
-  {
-    type: "People",
-    name: "Raj Patel",
-    country: "India",
-    phone: "9876543210",
-    email: "raj.patel@gmail.com",
-  },
-  {
-    type: "Company",
-    name: "Green Energy Co",
-    country: "Canada",
-    phone: "6135557890",
-    email: "info@greenenergy.ca",
-  },
-  {
-    type: "People",
-    name: "Sophie Chen",
-    country: "China",
-    phone: "13800138000",
-    email: "sophie.chen@qq.com",
-  },
-  {
-    type: "Company",
-    name: "Aussie Exports",
-    country: "Australia",
-    phone: "0261234567",
-    email: "sales@aussieexports.com.au",
-  },
-  {
-    type: "People",
-    name: "Carlos Rodriguez",
-    country: "Spain",
-    phone: "34612345678",
-    email: "carlos@example.es",
-  },
-  {
-    type: "Company",
-    name: "Nordic Design",
-    country: "Sweden",
-    phone: "468765432",
-    email: "info@nordicdesign.se",
-  },
-  {
-    type: "People",
-    name: "Aisha Mohammed",
-    country: "UAE",
-    phone: "971501234567",
-    email: "aisha.m@email.ae",
-  },
-  {
-    type: "Company",
-    name: "Brazilian Motors",
-    country: "Brazil",
-    phone: "5511987654321",
-    email: "contato@brazilianmotors.br",
-  },
-  {
-    type: "People",
-    name: "Yuki Tanaka",
-    country: "Japan",
-    phone: "8109012345678",
-    email: "yuki.tanaka@email.jp",
-  },
-  {
-    type: "Company",
-    name: "African Safaris",
-    country: "Kenya",
-    phone: "254712345678",
-    email: "bookings@africansafaris.ke",
+    name: "Beauty Products",
+    description: "Cosmetics, skincare, and personal care items.",
+    color: "#E91E63", // Pink
+    enabled: false,
   },
 ];
 
 function TableContainer() {
-  const columns: ColumnDef<Client>[] = [
+  const columns: ColumnDef<ProductCategory>[] = [
     {
-      accessorKey: "type",
-      header: "Type",
-      cell: ({ row }) => (
-        <Badge
-          variant="secondary"
-          className="bg-pink-100 text-pink-500 hover:bg-pink-100"
-        >
-          {row.getValue("type")}
-        </Badge>
-      ),
+      id: "Sr. No.",
+      header: "Sr. No.",
+      cell: ({ row }) => <span>{row.index + 1}</span>,
     },
     {
       accessorKey: "name",
       header: "Name",
     },
     {
-      accessorKey: "country",
-      header: "Country",
+      accessorKey: "description",
+      header: "Description",
+    },
+    {
+      accessorKey: "color",
+      header: "Color",
       cell: ({ row }) => (
-        <div className="flex items-center gap-1">
-          <span className="text-muted-foreground">IN</span>
-          {row.getValue("country")}
-        </div>
+        <span
+          style={{
+            display: "inline-block",
+            backgroundColor: row.getValue("color") as string,
+            width: "16px",
+            height: "16px",
+            borderRadius: "50%",
+          }}
+          title={row.getValue("color") as string}
+        ></span>
       ),
     },
     {
-      accessorKey: "phone",
-      header: "Phone",
-    },
-    {
-      accessorKey: "email",
-      header: "Email",
+      accessorKey: "enabled",
+      header: "Enabled",
+      cell: ({ row }) => (
+        <span
+          className={
+            row.getValue("enabled")
+              ? "text-green-600 font-bold"
+              : "text-red-600 font-bold"
+          }
+        >
+          {row.getValue("enabled") ? "Yes" : "No"}
+        </span>
+      ),
     },
     {
       id: "actions",
-      cell: () => (
-        <ActionDropdown />
-      ),
+      header: "Actions",
+      cell: () => <ActionDropdown />,
     },
   ];
+
   return (
     <DataTable columns={columns} data={data} addBtnTitle="Add New Client" />
   );

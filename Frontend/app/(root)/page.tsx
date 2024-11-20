@@ -24,7 +24,7 @@ function page() {
             variant="new"
             className="rounded-3xl p-2 text-sm"
           >
-            <DollarSign className="h-4 w-4 text-blue-2" /> 20.00
+            <DollarSign className="h-4 w-4" /> 20.00
           </Badge>
         </CardHeader>
       </Card>
@@ -36,7 +36,7 @@ function page() {
             variant="negotiation"
             className="rounded-3xl p-2 text-sm"
           >
-            <DollarSign className="h-4 w-4 text-purple-1" /> 00.00
+            <DollarSign className="h-4 w-4" /> 00.00
           </Badge>
         </CardHeader>
       </Card>
@@ -48,7 +48,7 @@ function page() {
             variant="success"
             className="rounded-3xl p-2 text-sm"
           >
-            <DollarSign className="h-4 w-4 text-teal-900" /> 00.00
+            <DollarSign className="h-4 w-4" /> 00.00
           </Badge>
         </CardHeader>
       </Card>
@@ -60,7 +60,7 @@ function page() {
             variant="danger"
             className="rounded-3xl p-2 text-sm"
           >
-            <DollarSign className="h-4 w-4 text-rose-900" /> 00.00
+            <DollarSign className="h-4 w-4" /> 00.00
           </Badge>
         </CardHeader>
       </Card>

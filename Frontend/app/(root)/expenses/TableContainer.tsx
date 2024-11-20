@@ -1,162 +1,99 @@
 "use client";
 
 import React from "react";
-import { Badge } from "@/components/Ui/badge";
 import { ColumnDef } from "@tanstack/react-table";
 import DataTable from "@/components/DataTable/DataTable";
 import ActionDropdown from "@/components/ActionDropdown/ActionDropdown";
+import { DollarSign, IndianRupee } from "lucide-react";
 
-interface Client {
-  type: string;
+interface Expense {
   name: string;
-  country: string;
-  phone: string;
-  email: string;
+  category: string;
+  currency: string;
+  total: string;
+  description: string;
+  reference: string;
 }
 
-const data: Client[] = [
+const data: Expense[] = [
   {
-    type: "People",
-    name: "Yo D",
-    country: "India",
-    phone: "8626038497",
-    email: "acd@eamil.com",
+    name: "Office Supplies",
+    category: "Stationery",
+    currency: "USD",
+    total: "120.50",
+    description: "Purchased pens, notebooks, and markers.",
+    reference: "EXP-101",
   },
   {
-    type: "People",
-    name: "Abhi Dhengale",
-    country: "India",
-    phone: "8626038497",
-    email: "abc@email.com",
+    name: "Client Dinner",
+    category: "Meals & Entertainment",
+    currency: "USD",
+    total: "250.00",
+    description: "Dinner with potential clients at a high-end restaurant.",
+    reference: "EXP-102",
   },
   {
-    type: "Company",
-    name: "Tech Solutions",
-    country: "USA",
-    phone: "1234567890",
-    email: "info@techsolutions.com",
+    name: "Travel Expense",
+    category: "Transportation",
+    currency: "USD",
+    total: "350.75",
+    description: "Flight ticket for the New York conference.",
+    reference: "EXP-103",
   },
   {
-    type: "People",
-    name: "Emma Watson",
-    country: "UK",
-    phone: "4478901234",
-    email: "emma@example.com",
+    name: "Software License",
+    category: "Subscriptions",
+    currency: "USD",
+    total: "99.99",
+    description: "Monthly subscription for design software.",
+    reference: "EXP-104",
   },
   {
-    type: "Company",
-    name: "Global Innovations",
-    country: "Germany",
-    phone: "4987654321",
-    email: "contact@globalinno.de",
-  },
-  {
-    type: "People",
-    name: "Raj Patel",
-    country: "India",
-    phone: "9876543210",
-    email: "raj.patel@gmail.com",
-  },
-  {
-    type: "Company",
-    name: "Green Energy Co",
-    country: "Canada",
-    phone: "6135557890",
-    email: "info@greenenergy.ca",
-  },
-  {
-    type: "People",
-    name: "Sophie Chen",
-    country: "China",
-    phone: "13800138000",
-    email: "sophie.chen@qq.com",
-  },
-  {
-    type: "Company",
-    name: "Aussie Exports",
-    country: "Australia",
-    phone: "0261234567",
-    email: "sales@aussieexports.com.au",
-  },
-  {
-    type: "People",
-    name: "Carlos Rodriguez",
-    country: "Spain",
-    phone: "34612345678",
-    email: "carlos@example.es",
-  },
-  {
-    type: "Company",
-    name: "Nordic Design",
-    country: "Sweden",
-    phone: "468765432",
-    email: "info@nordicdesign.se",
-  },
-  {
-    type: "People",
-    name: "Aisha Mohammed",
-    country: "UAE",
-    phone: "971501234567",
-    email: "aisha.m@email.ae",
-  },
-  {
-    type: "Company",
-    name: "Brazilian Motors",
-    country: "Brazil",
-    phone: "5511987654321",
-    email: "contato@brazilianmotors.br",
-  },
-  {
-    type: "People",
-    name: "Yuki Tanaka",
-    country: "Japan",
-    phone: "8109012345678",
-    email: "yuki.tanaka@email.jp",
-  },
-  {
-    type: "Company",
-    name: "African Safaris",
-    country: "Kenya",
-    phone: "254712345678",
-    email: "bookings@africansafaris.ke",
+    name: "Electricity Bill",
+    category: "Utilities",
+    currency: "USD",
+    total: "180.00",
+    description: "Office electricity charges for October.",
+    reference: "EXP-105",
   },
 ];
 
+
 function TableContainer() {
-  const columns: ColumnDef<Client>[] = [
+  const columns: ColumnDef<Expense>[] = [
     {
-      accessorKey: "type",
-      header: "Type",
-      cell: ({ row }) => (
-        <Badge
-          variant="secondary"
-          className="bg-pink-100 text-pink-500 hover:bg-pink-100"
-        >
-          {row.getValue("type")}
-        </Badge>
-      ),
+      id: "srNo",
+      header: "Sr. No.",
+      cell: ({ row }) => <span>{row.index + 1}</span>,
     },
     {
       accessorKey: "name",
       header: "Name",
     },
     {
-      accessorKey: "country",
-      header: "Country",
+      accessorKey: "category",
+      header: "Expense Category",
+    },
+    {
+      accessorKey: "currency",
+      header: "Currency",
+    },
+    {
+      accessorKey: "total",
+      header: "Total",
       cell: ({ row }) => (
-        <div className="flex items-center gap-1">
-          <span className="text-muted-foreground">IN</span>
-          {row.getValue("country")}
-        </div>
+        <strong className="text-green-500 text-sm flex items-center">
+          {row.getValue("currency") === "USD" ? <DollarSign className="w-4 h-4" /> : <IndianRupee className="w-4 h-4" /> } {row.getValue("total")}
+        </strong>
       ),
     },
     {
-      accessorKey: "phone",
-      header: "Phone",
+      accessorKey: "description",
+      header: "Description",
     },
     {
-      accessorKey: "email",
-      header: "Email",
+      accessorKey: "reference",
+      header: "Ref",
     },
     {
       id: "actions",

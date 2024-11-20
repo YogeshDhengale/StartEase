@@ -1,162 +1,95 @@
 "use client";
 
 import React from "react";
-import { Badge } from "@/components/Ui/badge";
 import { ColumnDef } from "@tanstack/react-table";
 import DataTable from "@/components/DataTable/DataTable";
 import ActionDropdown from "@/components/ActionDropdown/ActionDropdown";
 
-interface Client {
-  type: string;
+interface ExpenseCategory {
   name: string;
-  country: string;
-  phone: string;
-  email: string;
+  description: string;
+  color: string;
+  enabled: boolean;
 }
 
-const data: Client[] = [
+const data: ExpenseCategory[] = [
   {
-    type: "People",
-    name: "Yo D",
-    country: "India",
-    phone: "8626038497",
-    email: "acd@eamil.com",
+    name: "Office Supplies",
+    description: "Expenses for office stationery and supplies.",
+    color: "#FF5733",
+    enabled: true,
   },
   {
-    type: "People",
-    name: "Abhi Dhengale",
-    country: "India",
-    phone: "8626038497",
-    email: "abc@email.com",
+    name: "Travel",
+    description: "Transportation and travel-related expenses.",
+    color: "#33FF57",
+    enabled: true,
   },
   {
-    type: "Company",
-    name: "Tech Solutions",
-    country: "USA",
-    phone: "1234567890",
-    email: "info@techsolutions.com",
+    name: "Utilities",
+    description: "Bills for electricity, water, and internet services.",
+    color: "#3357FF",
+    enabled: false,
   },
   {
-    type: "People",
-    name: "Emma Watson",
-    country: "UK",
-    phone: "4478901234",
-    email: "emma@example.com",
+    name: "Marketing",
+    description: "Expenses related to advertising and promotions.",
+    color: "#FF33A1",
+    enabled: true,
   },
   {
-    type: "Company",
-    name: "Global Innovations",
-    country: "Germany",
-    phone: "4987654321",
-    email: "contact@globalinno.de",
-  },
-  {
-    type: "People",
-    name: "Raj Patel",
-    country: "India",
-    phone: "9876543210",
-    email: "raj.patel@gmail.com",
-  },
-  {
-    type: "Company",
-    name: "Green Energy Co",
-    country: "Canada",
-    phone: "6135557890",
-    email: "info@greenenergy.ca",
-  },
-  {
-    type: "People",
-    name: "Sophie Chen",
-    country: "China",
-    phone: "13800138000",
-    email: "sophie.chen@qq.com",
-  },
-  {
-    type: "Company",
-    name: "Aussie Exports",
-    country: "Australia",
-    phone: "0261234567",
-    email: "sales@aussieexports.com.au",
-  },
-  {
-    type: "People",
-    name: "Carlos Rodriguez",
-    country: "Spain",
-    phone: "34612345678",
-    email: "carlos@example.es",
-  },
-  {
-    type: "Company",
-    name: "Nordic Design",
-    country: "Sweden",
-    phone: "468765432",
-    email: "info@nordicdesign.se",
-  },
-  {
-    type: "People",
-    name: "Aisha Mohammed",
-    country: "UAE",
-    phone: "971501234567",
-    email: "aisha.m@email.ae",
-  },
-  {
-    type: "Company",
-    name: "Brazilian Motors",
-    country: "Brazil",
-    phone: "5511987654321",
-    email: "contato@brazilianmotors.br",
-  },
-  {
-    type: "People",
-    name: "Yuki Tanaka",
-    country: "Japan",
-    phone: "8109012345678",
-    email: "yuki.tanaka@email.jp",
-  },
-  {
-    type: "Company",
-    name: "African Safaris",
-    country: "Kenya",
-    phone: "254712345678",
-    email: "bookings@africansafaris.ke",
+    name: "Miscellaneous",
+    description: "Uncategorized or one-time expenses.",
+    color: "#A133FF",
+    enabled: false,
   },
 ];
 
 function TableContainer() {
-  const columns: ColumnDef<Client>[] = [
+  const columns: ColumnDef<ExpenseCategory>[] = [
     {
-      accessorKey: "type",
-      header: "Type",
-      cell: ({ row }) => (
-        <Badge
-          variant="secondary"
-          className="bg-pink-100 text-pink-500 hover:bg-pink-100"
-        >
-          {row.getValue("type")}
-        </Badge>
-      ),
+      id: "Sr. No.",
+      header: "Sr. No.",
+      cell: ({ row }) => <span>{row.index + 1}</span>,
     },
     {
       accessorKey: "name",
       header: "Name",
     },
     {
-      accessorKey: "country",
-      header: "Country",
+      accessorKey: "description",
+      header: "Description",
+    },
+    {
+      accessorKey: "color",
+      header: "Color",
       cell: ({ row }) => (
-        <div className="flex items-center gap-1">
-          <span className="text-muted-foreground">IN</span>
-          {row.getValue("country")}
-        </div>
+        <span
+          style={{
+            display: "inline-block",
+            backgroundColor: row.getValue("color") as string,
+            width: "16px",
+            height: "16px",
+            borderRadius: "50%",
+          }}
+          title={row.getValue("color") as string}
+        ></span>
       ),
     },
     {
-      accessorKey: "phone",
-      header: "Phone",
-    },
-    {
-      accessorKey: "email",
-      header: "Email",
+      accessorKey: "enabled",
+      header: "Enabled",
+      cell: ({ row }) => (
+        <span
+          className={
+            row.getValue("enabled")
+              ? "text-green-600 font-bold"
+              : "text-red-600 font-bold"
+          }
+        >
+          {row.getValue("enabled") ? "Yes" : "No"}
+        </span>
+      ),
     },
     {
       id: "actions",
