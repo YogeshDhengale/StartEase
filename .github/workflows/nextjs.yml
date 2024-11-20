@@ -60,17 +60,15 @@ jobs:
             ${{ runner.os }}-nextjs-${{ hashFiles('Frontend/package-lock.json', 'Frontend/yarn.lock') }}-
 
       - name: Install dependencies
-        working-directory: Frontend
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
 
       - name: Build with Next.js
-        working-directory: Frontend
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: Frontend/out
+          path: /out
 
   deploy:
     environment:
