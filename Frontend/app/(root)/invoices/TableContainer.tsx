@@ -138,12 +138,13 @@ function TableContainer() {
     },
     {
       id: "actions",
-      
       cell: () => <ActionDropdown />,
     },
   ];
   return (
+    <>
     <DataTable columns={columns} data={data} addBtnTitle="Add New Client" />
+    </>
   );
 }
 

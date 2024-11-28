@@ -158,7 +158,7 @@ function CustomersTableContainer() {
     },
     {
       id: "actions",
-      cell: () => <ActionDropdown />,
+      cell: ({ row }) => <ActionDropdown title={`See details of ${row.getValue("name")}`}  itemName={row.getValue("name")} />,
     },
   ];
   return (
