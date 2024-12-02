@@ -29,7 +29,7 @@ interface ReportCardProps {
   children?: React.ReactNode
 }
 
-export function ReportCard({
+export function  ReportCard({
   title,
   description,
   variant,
@@ -104,8 +104,8 @@ export function ReportCardWithCustomDate({
       description={description}
       contentClass="flex items-center gap-2"
     >
-      <Select value={selected} onValueChange={handleChange}>
-        <SelectTrigger className="flex-1">
+       <Select value={selected} onValueChange={handleChange} >
+        <SelectTrigger className="w-[200px] mr-4">
           <SelectValue />
         </SelectTrigger>
         <SelectContent>

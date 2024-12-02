@@ -39,7 +39,7 @@ export default function YearlyExpenseChart() {
   const [year, setYear] = useState("2024")
 
   return (
-    <Card className="md:col-span-4 md:row-span-6">
+    <Card className="md:col-span-4 md:row-span-4">
       <CardHeader className="">
         <Select value={year} onValueChange={setYear}>
           <SelectTrigger className="w-[100px]">
@@ -52,15 +52,15 @@ export default function YearlyExpenseChart() {
           </SelectContent>
         </Select>
       </CardHeader>
-      <CardContent className="h-full max-h-[500px]">
+      <CardContent className="h-full flex-center max-h-[560px]">
         <ResponsiveContainer width="100%" height="100%" className="min-h-96">
           <BarChart data={data}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="month" />
-            <YAxis />
+            <XAxis dataKey="month" className="text-xs md:text-base"/>
+            <YAxis className="text-xs md:text-lg" />
             <Tooltip />
             <Legend />
-            <Bar dataKey="payment" fill="#8884d8" />
+            <Bar dataKey="payment" key="Payment" fill="#8884d8" />
             <Bar dataKey="expense" fill="#82ca9d" />
           </BarChart>
         </ResponsiveContainer>
